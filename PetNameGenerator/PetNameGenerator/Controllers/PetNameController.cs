@@ -15,12 +15,12 @@ namespace PetNameGenerator.Controllers
         private static readonly string[] birdNames = { "Tweety", "Sky", "Chirpy", "Raven", "Sunny" };
 
         [HttpPost("generate")]
-        public IActionResult GenerateName([FromBody] PetNameRequest request)
+        public IActionResult GenerateName([FromQuery] PetNameRequest request)
         {
             if (request == null || string.IsNullOrEmpty(request.AnimalType))
             {
                 return BadRequest(new { error = "The 'animalType' field is required." });
-            }   
+            }
 
             string animalType = request.AnimalType.ToLower();
             string[] nameList;
@@ -60,11 +60,10 @@ namespace PetNameGenerator.Controllers
 
             return Ok(new { name = petName });
         }
-    }
-
-    public class PetNameRequest
-    {
-        public string AnimalType { get; set; }
-        public bool? TwoPart { get; set; }
+        public class PetNameRequest
+        {
+            public string AnimalType { get; set; }
+            public bool? TwoPart { get; set; }
+        }
     }
 }
