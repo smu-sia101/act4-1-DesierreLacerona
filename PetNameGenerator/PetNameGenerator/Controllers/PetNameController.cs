@@ -20,7 +20,7 @@ namespace PetNameGenerator.Controllers
             if (request == null || string.IsNullOrEmpty(request.AnimalType))
             {
                 return BadRequest(new { error = "The 'animalType' field is required." });
-            }
+            }   
 
             string animalType = request.AnimalType.ToLower();
             string[] nameList;
